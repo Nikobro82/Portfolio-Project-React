@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link, HashRouter, useParams } from 'react
 
 import Card from "./Card"
 import React from "react"
+import brickbattle_defense_clip1 from "/videos/brickbattleclip.mp4"
 
 const descriptions = {
     "Nikobro82" : {
@@ -37,7 +38,10 @@ const descriptions = {
       "imgsrc" : "./assets/nikobro82pfp.jpg",
       "TimeLength" : "1 Year and 1/2",
       "name" : "Brickbattle Defense",
-      "hasLink" : true
+      "hasLink" : true,
+      "videos" : [
+        brickbattle_defense_clip1
+      ]
     },
     "Brickbattle RPG" : {
       "desc" : "Brickbattle RPG is the newest game I am working on. I've developed advanced systems for Weapons, Armor, and Abilities, and currently developing on more.",
@@ -114,6 +118,8 @@ function Project() {
   const {name} = useParams()
 
   const table = descriptions[name]
+  const videoTable = table.videos || null
+
 
   return (
     <>
@@ -121,6 +127,10 @@ function Project() {
         <h1>{table.name}</h1>
 
       </div>
+      {videoTable.map((url) => (
+        <video key = {url} src = {url} height = "640" width = "480" controls></video>
+      ))}
+
       
     </>
   )
