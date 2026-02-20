@@ -1,6 +1,7 @@
 import profilepic from "./assets/nikobro82pfp.jpg"
 import destiny2 from "./assets/destiny2.png"
 import {motion, AnimatePresence} from "framer-motion"
+import {Link} from "react-router-dom"
 import {useState} from 'react'
 
 function Card(props) {
@@ -33,10 +34,10 @@ function Card(props) {
 
     return(
         <motion.div className = "card" 
-        initial = {{rotate: "180deg"}} 
+        initial = {{rotate: "0eg"}} 
         animate = {{rotate: "0deg"}} 
-        transition = {{duration: 2.25, type: 'spring'}}
-        whileHover = {{scale:1.05, rotate: "360deg"}}
+        transition = {{duration: 0.5, type: 'spring'}}
+        whileHover = {{scale:1.05, rotate: "2.5deg"}}
         onMouseEnter = {() => updateDescription(desc2)}
         onMouseLeave = {() => updateDescription(desc1)}
         onClick={() => onClickFunc()}>
@@ -46,6 +47,8 @@ function Card(props) {
             {table.TimeLength ? <p className = "timeSpent-text">Time Spent: {table.TimeLength}</p> : null}
 
             <p className = "card-text">{description}</p>
+
+            {table.hasLink ? <Link to = {`/project/${encodeURIComponent(table.name)}`}>To: {table.name}</Link> : null}
         </motion.div>
     );
 }

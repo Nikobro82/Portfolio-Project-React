@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link, HashRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, HashRouter, useParams } from 'react-router-dom';
 
 import Card from "./Card"
 import React from "react"
@@ -36,21 +36,24 @@ const descriptions = {
       "desc2" : "https://www.roblox.com/home",
       "imgsrc" : "./assets/nikobro82pfp.jpg",
       "TimeLength" : "1 Year and 1/2",
-      "name" : "Brickbattle Defense"
+      "name" : "Brickbattle Defense",
+      "hasLink" : true
     },
     "Brickbattle RPG" : {
       "desc" : "Brickbattle RPG is the newest game I am working on. I've developed advanced systems for Weapons, Armor, and Abilities, and currently developing on more.",
       "desc2" : "The tamer class is real!",
       "imgsrc" : "./assets/nikobro82pfp.jpg",
       "TimeLength" : "2 Months",
-      "name" : "Brickbattle RPG"
+      "name" : "Brickbattle RPG",
+      "hasLink" : true
     },
     "Countries Tower Defense" : {
       "desc" : "My first true video game project, this is where I learned simple modular systems, abstraction with module-scripts and much more.",
       "desc2" : "lol spaghetti code now!",
       "imgsrc" : "./assets/nikobro82pfp.jpg",
       "TimeLength" : "1 Year",
-      "name" : "Countries Tower Defense"
+      "name" : "Countries Tower Defense",
+      "hasLink" : true
     },
     "Portfolio" : {
       "desc" : "This project is my first serious react/js project! Hope you like it!",
@@ -68,12 +71,9 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path = "/" element = {<Home />} />
-        <Route path = "/project/brickbattle" element = {<Project />} />
+        <Route path = "/project/:name" element = {<Project />} />
       </Routes>
     </HashRouter>
-    
-
-    
   )
 }
 
@@ -82,7 +82,6 @@ function Home() {
     <>
       <h1 className = "header">Nikobro82</h1>
       <hr></hr>
-      <Link to="/project/brickbattle">Brickbattle</Link> |{" "}
       <div className = "card-container">
         <h2 className = "header">Studies</h2>
         <hr></hr>
@@ -112,9 +111,17 @@ function Home() {
 }
 
 function Project() {
+  const {name} = useParams()
+
+  const table = descriptions[name]
+
   return (
     <>
-      <h1>LOL HI</h1>
+      <div className = "project-container">
+        <h1>{table.name}</h1>
+
+      </div>
+      
     </>
   )
 }
