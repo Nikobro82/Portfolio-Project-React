@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Link, HashRouter, useParams } from 'react
 import Card from "./Card"
 import React from "react"
 import brickbattle_defense_clip1 from "/videos/brickbattleclip.mp4"
+import brickbattle_defense_clip2 from "/videos/brickbattleclip2.mp4"
+import countries_defense_clip1 from "/videos/countriesclip.mp4"
 
 const descriptions = {
     "Nikobro82" : {
@@ -40,7 +42,8 @@ const descriptions = {
       "name" : "Brickbattle Defense",
       "hasLink" : true,
       "videos" : [
-        brickbattle_defense_clip1
+        brickbattle_defense_clip1,
+        brickbattle_defense_clip2
       ]
     },
     "Brickbattle RPG" : {
@@ -57,7 +60,10 @@ const descriptions = {
       "imgsrc" : "./assets/nikobro82pfp.jpg",
       "TimeLength" : "1 Year",
       "name" : "Countries Tower Defense",
-      "hasLink" : true
+      "hasLink" : true,
+      "videos" : [
+        countries_defense_clip1
+      ]
     },
     "Portfolio" : {
       "desc" : "This project is my first serious react/js project! Hope you like it!",
@@ -120,16 +126,24 @@ function Project() {
   const table = descriptions[name]
   const videoTable = table.videos || null
 
+  
 
   return (
     <>
       <div className = "project-container">
-        <h1>{table.name}</h1>
-
+        <h1>{table.name}: Media</h1>
+          <Link to = "/">Back Home</Link>
+        <hr></hr>
+        
+        <div className = "videos-container">
+          {videoTable ? videoTable.map((url) => (
+            <video className = "project-video" key = {url} src = {url} height = "640" width = "480" controls></video>
+          )) : null}
+        </div>
+        
+        
       </div>
-      {videoTable.map((url) => (
-        <video key = {url} src = {url} height = "640" width = "480" controls></video>
-      ))}
+      
 
       
     </>

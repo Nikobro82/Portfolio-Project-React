@@ -51,3 +51,11 @@ body {
 .project-container {
   font-family: Arial, sans-serif;
 }
+
+.project-container .videos-container {
+  display: inline-block;
+}
+
+.project-container .videos-container .project-video {
+  padding: 20px;
+}
